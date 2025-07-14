@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PasswordController;
+use Illuminate\Support\Facades\Log;
+
+Route::get('/debug-error', function () {
+    Log::error('Manual test error triggered.');
+    throw new \Exception('Testing error log');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,9 +26,6 @@ Route::get('/dashboard', function () {
     return view('dashboard', ['users' => $users]);
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/debug-error', function () {
-    throw new \Exception('Test error to trigger Laravel error logging');
-});
 
 
 Route::middleware('auth')->group(function () {
