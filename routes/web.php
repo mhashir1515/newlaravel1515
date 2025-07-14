@@ -19,9 +19,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     $users = [];
 
-    if (Auth::user()->is_admin) {
+   
         $users = User::all();
-    }
+  
 
     return view('dashboard', ['users' => $users]);
 })->middleware(['auth'])->name('dashboard');
